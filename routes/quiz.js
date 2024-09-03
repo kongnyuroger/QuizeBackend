@@ -12,9 +12,8 @@ router.get('/:category', async (req, res) => {
   }
 });
 
-
 // Add a new question
-router.post('/home', async (req, res) => {
+router.post('/', async (req, res) => {
   const question = new Question({
     category: req.body.category,
     questionText: req.body.questionText,
