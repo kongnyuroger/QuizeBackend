@@ -13,7 +13,12 @@ const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
 db.once('open', () => console.log('Connected to MongoDB'));
 
+// Quiz routes
 const quizRouter = require('./routes/quiz');
 app.use('/api/quiz', quizRouter);
+
+// Auth routes
+const authRouter = require('./routes/auth');
+app.use('/api/auth', authRouter);
 
 module.exports = app;

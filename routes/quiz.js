@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const Question = require('../models/question');
+const authMiddleware = require('../middleware/auth');
 
 // Get questions by category
 router.get('/:category', async (req, res) => {
@@ -12,8 +13,8 @@ router.get('/:category', async (req, res) => {
   }
 });
 
-// Add a new question
-router.post('/', async (req, res) => {
+// Add a new question (protected route)
+router.post('/', authMiddleware, async (req, res) => {
   const question = new Question({
     category: req.body.category,
     questionText: req.body.questionText,
