@@ -8,6 +8,14 @@ dotenv.config();
 const app = express();
 app.use(bodyParser.json());
 
+const cors = require('cors');
+const corsOptions ={
+    origin:'http://localhost:3000', 
+    credentials:true,            //access-control-allow-credentials:true
+    optionSuccessStatus:200
+}
+app.use(cors(corsOptions));
+
 mongoose.connect(process.env.DATABASE_URL, {  ssl:true , tlsInsecure: true});
 const db = mongoose.connection;
 db.on('error', (error) => console.error(error));
